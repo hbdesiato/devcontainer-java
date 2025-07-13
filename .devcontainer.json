@@ -1,0 +1,10 @@
+{
+    "image": "quay.io/fedora/fedora:latest",
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2": {
+            "username": "dev"
+        },
+        "ghcr.io/hbdesiato/devcontainer-features/java:1": {}
+    },
+    "remoteUser": "dev"
+}
