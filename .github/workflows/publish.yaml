@@ -18,12 +18,13 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/setup-buildx-action@v3
       - uses: devcontainers/ci@v0.3
         with:
           imageName: "ghcr.io/${{ github.repository }}"
           push: always
       - run: |
-          docker image inspect ghcr.io/${{ github.repository }} | jq -r .[0].Digest > .image-digest
+          docker image inspect ghcr.io/${{ github.repository }} | jq -r .[0].RepoDigests[0] > .image-digest
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git commit -a -m "auto-update" || echo "Nothing to commit"
