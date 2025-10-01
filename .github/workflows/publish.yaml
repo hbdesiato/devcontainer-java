@@ -24,6 +24,7 @@ jobs:
           imageName: "ghcr.io/${{ github.repository }}"
           push: always
       - run: |
+          docker image pull ghcr.io/${{ github.repository }}
           docker image inspect ghcr.io/${{ github.repository }} | jq -r .[0].RepoDigests[0] > .image-digest
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
